@@ -657,12 +657,23 @@ body {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 25px;
+  grid-template-columns: 1fr;
+  gap: 28px;
 }
 
 .project-card {
   min-width: 0;
+}
+
+.project-featured {
+  grid-column: 1 / -1;
+}
+
+.project-card.is-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr);
+  gap: 28px;
+  align-items: stretch;
 }
 
 .project-preview {
@@ -674,6 +685,21 @@ body {
   border-radius: 9px;
   background: #142239;
   transition: .4s ease;
+}
+
+.project-preview.has-shot {
+  padding: 0;
+  min-height: 360px;
+  background: #0c121c;
+}
+
+.preview-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .project-card:hover .project-preview {
@@ -694,6 +720,33 @@ body {
   font-size: 8px;
   letter-spacing: 1px;
   color: #a8b4c9;
+}
+
+.has-shot .preview-browser {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: linear-gradient(180deg, rgba(8,11,18,.72), transparent);
+  border-bottom: 0;
+}
+
+.concept-badge {
+  position: absolute;
+  z-index: 2;
+  left: 14px;
+  bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(8,11,18,.82);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #d7e2ff;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .preview-hero {
@@ -765,6 +818,31 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 21px 2px;
+}
+
+.project-card.is-featured .project-info {
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px 4px 8px;
+}
+
+.project-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--blue);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  transition: .3s ease;
+}
+
+.project-live:hover {
+  background: #6590ff;
+  transform: translateY(-2px);
 }
 
 .project-category {
@@ -1128,6 +1206,10 @@ body {
 
   .footer-main {
     flex-wrap: wrap;
+  }
+
+  .project-card.is-featured {
+    grid-template-columns: 1fr;
   }
 }
 

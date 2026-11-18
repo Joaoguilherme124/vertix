@@ -23,8 +23,10 @@ import {
 } from "lucide-react";
 
 import "./App.css";
+import airflowPreview from "./assets/airflow-climate.png";
 
 const CONTACT_EMAIL = "hello@vertix.co.uk";
+const AIRFLOW_DEMO_URL = "https://airflow-climate.vercel.app/";
 
 const services = [
   {
@@ -59,10 +61,13 @@ const projects = [
     name: "Airflow Climate",
     category: "HVAC WEBSITE CONCEPT",
     description:
-      "A modern digital experience for an air conditioning and heating company.",
+      "A premium London HVAC website built to show how heating, cooling and ventilation companies can look credible online and convert visitors into enquiries.",
     className: "project-airflow",
     label: "AIRFLOW",
-    sublabel: "Climate Solutions",
+    sublabel: "Heating · Cooling · Ventilation · London",
+    image: airflowPreview,
+    liveUrl: AIRFLOW_DEMO_URL,
+    featured: true,
   },
   {
     number: "02",
@@ -394,55 +399,79 @@ function Work() {
         <Reveal>
           <div className="section-heading">
             <div>
-              <span className="section-label">SELECTED CONCEPTS</span>
+              <span className="section-label">OUR WORK</span>
               <h2>
-                Made to stand
+                See the standard
                 <br />
-                <span>out.</span>
+                <span>we build to.</span>
               </h2>
             </div>
 
             <p>
-              Concept websites created for HVAC and heating companies,
-              showing the standard we bring to service businesses.
+              Live conceptual demos for HVAC businesses, so you can
+              experience the type of website Vertix can develop.
             </p>
           </div>
         </Reveal>
 
         <div className="projects-grid">
           {projects.map((project, index) => (
-            <Reveal key={project.number} delay={index * 0.15}>
-              <article className="project-card">
-                <div className={`project-preview ${project.className}`}>
+            <Reveal
+              key={project.number}
+              delay={index * 0.15}
+              className={project.featured ? "project-featured" : ""}
+            >
+              <article
+                className={`project-card${project.featured ? " is-featured" : ""}`}
+              >
+                <div
+                  className={`project-preview ${project.className}${
+                    project.image ? " has-shot" : ""
+                  }`}
+                >
                   <div className="preview-browser">
                     <div className="preview-dots">
                       <i />
                       <i />
                       <i />
                     </div>
-                    <span>WEBSITE CONCEPT</span>
-                  </div>
-
-                  <div className="preview-hero">
-                    <div className="preview-logo">{project.label}</div>
-                    <span className="preview-small">{project.sublabel}</span>
-
-                    <h3>
-                      Comfort.
-                      <br />
-                      <span>Without compromise.</span>
-                    </h3>
-
-                    <div className="preview-line" />
-
-                    <span className="preview-cta">
-                      Explore our services <ArrowUpRight size={12} />
+                    <span>
+                      {project.liveUrl ? "LIVE CONCEPT DEMO" : "WEBSITE CONCEPT"}
                     </span>
                   </div>
 
-                  <div className="preview-decoration">
-                    <MousePointer2 size={32} />
-                  </div>
+                  {project.image ? (
+                    <img
+                      className="preview-shot"
+                      src={project.image}
+                      alt={`${project.name} website concept preview`}
+                    />
+                  ) : (
+                    <>
+                      <div className="preview-hero">
+                        <div className="preview-logo">{project.label}</div>
+                        <span className="preview-small">{project.sublabel}</span>
+
+                        <h3>
+                          Comfort.
+                          <br />
+                          <span>Without compromise.</span>
+                        </h3>
+
+                        <div className="preview-line" />
+
+                        <span className="preview-cta">
+                          Explore our services <ArrowUpRight size={12} />
+                        </span>
+                      </div>
+
+                      <div className="preview-decoration">
+                        <MousePointer2 size={32} />
+                      </div>
+                    </>
+                  )}
+
+                  <span className="concept-badge">Conceptual demo</span>
                 </div>
 
                 <div className="project-info">
@@ -450,6 +479,16 @@ function Work() {
                     <span className="project-category">{project.category}</span>
                     <h3>{project.name}</h3>
                     <p>{project.description}</p>
+                    {project.liveUrl ? (
+                      <a
+                        className="project-live"
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Live Demo <ArrowUpRight size={16} />
+                      </a>
+                    ) : null}
                   </div>
 
                   <span className="project-number">{project.number}</span>
@@ -460,8 +499,10 @@ function Work() {
         </div>
 
         <p className="portfolio-note">
-          Airflow Climate and Nexa Heating are fictional demonstrations
-          presented as concepts, not completed client projects.
+          Airflow Climate is a conceptual demonstration of the websites we
+          build for HVAC companies. It is not a real client and does not
+          represent a trading business. Nexa Heating is an illustrative
+          concept only.
         </p>
       </div>
     </section>
